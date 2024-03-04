@@ -24,7 +24,10 @@ export const metadata: Metadata = {
   twitter: {
     card:'summary_large_image',
     title: siteConfig.name,
-    images: 'https://emoji-motion-demo.vercel.app/preview.png',
+    images: [{
+      url: 'https://emoji-motion-demo.vercel.app/preview.png',
+      alt: 'A vibrant display of animated emojis showcasing various expressions and motions.',
+    }],
     description: siteConfig.description,
   },
   icons: [
