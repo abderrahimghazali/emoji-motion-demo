@@ -3,7 +3,9 @@ import {  useRef, useState } from "react"
 import { Suspense } from "react";
 import { EmojiGrid } from "../emoji-grid";
 import { SubmitButton } from "../emoji-form/submit-button";
+// @ts-ignore
 import SyntaxHighlighter from 'react-syntax-highlighter';
+// @ts-ignore
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 interface PageContentProps extends React.PropsWithChildren {

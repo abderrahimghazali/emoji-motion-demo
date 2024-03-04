@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+// @ts-ignore
 import EmojiMotion from "emoji-motion";
 import { emojis } from './constants';
 import {
