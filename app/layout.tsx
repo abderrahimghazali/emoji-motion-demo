@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: ["Emoji", "React", "animated emojis", "animation smile"],
   openGraph: {
-    images: '/preview.png',
+    images: 'https://emoji-motion-demo.vercel.app/preview.png',
   },
   twitter: {
     card:'summary_large_image',
