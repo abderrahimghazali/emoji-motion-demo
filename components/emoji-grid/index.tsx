@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import CodeSnippet from './code';
 import { Button } from '../ui/button';
 
 const INITIAL_LOAD = 10;
@@ -19,10 +18,14 @@ const LOAD_MORE_THRESHOLD = 200;
 interface EmojiGridProps {
   prompt?: string;
 }
-
+interface Emoji {
+  key: string;
+  value: string;
+  description: string;
+}
 export function EmojiGrid({ prompt }: EmojiGridProps) {
-  const [filteredEmojis, setFilteredEmojis] = useState([]);
-  const [visibleEmojis, setVisibleEmojis] = useState([]);
+  const [filteredEmojis, setFilteredEmojis] = useState<Emoji[]>([]);
+const [visibleEmojis, setVisibleEmojis] = useState<Emoji[]>([]);
   const [loadIndex, setLoadIndex] = useState(1);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ export function EmojiGrid({ prompt }: EmojiGridProps) {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loadIndex, filteredEmojis]); // Add filteredEmojis as a dependency
+  }, [loadIndex, filteredEmojis]); 
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">

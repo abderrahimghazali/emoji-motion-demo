@@ -27,12 +27,6 @@ export function EmojiForm({ initialPrompt }: EmojiFormProps) {
         onChange={handleInputChange}
         type="text"
         name="prompt"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            submitRef.current?.click();
-          }
-        }}
         className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
       />
       <SubmitButton ref={submitRef} />
