@@ -3,14 +3,28 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ["latin"] });
 const BODY_PADDING = "px-4 sm:px-6";
 
 export const metadata: Metadata = {
-  title: "EmojiMotion",
-  description: "EmojiMotion",
-};
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: ["Emoji", "React", "animated emojis", "animation smile"],
+  openGraph: {
+    images: '/preview.png',
+  },
+  icons: [
+    {
+      url: "/logo.svg",
+      href: "/logo.svg"
+    }
+  ]
+}
 
 export default function RootLayout({
   children,
