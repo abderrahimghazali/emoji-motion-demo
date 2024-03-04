@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 const BODY_PADDING = "px-4 sm:px-6";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://emoji-motion-demo.vercel.app'),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: ["Emoji", "React", "animated emojis", "animation smile"],
   openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
     images: 'https://emoji-motion-demo.vercel.app/preview.png',
   },
   twitter: {
