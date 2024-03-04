@@ -1,10 +1,10 @@
 "use client";
-import { EmojiForm } from "../emoji-form";
 import {  useRef, useState } from "react"
 import { Suspense } from "react";
 import { EmojiGrid } from "../emoji-grid";
 import { SubmitButton } from "../emoji-form/submit-button";
-import CodeSnippet from "../emoji-grid/code";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 interface PageContentProps extends React.PropsWithChildren {
   prompt?: string
@@ -14,13 +14,15 @@ export const PageContent = ({ children, prompt }: PageContentProps) => {
   const [inputValue, setInputValue] = useState('');
   const submitRef = useRef(null); 
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-  };
+  const  markdown = `
+import EmojiMotion from "emoji-motion";
+
+<EmojiMotion emoji={😀} style={{ height: 250, width: 250 }}/>
+`;
 
   return (
     <>
@@ -32,19 +34,13 @@ export const PageContent = ({ children, prompt }: PageContentProps) => {
           250+ animated emojies
         </p>
         <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
-          <form className="bg-black rounded-xl shadow-lg h-fit flex flex-row px-1 items-center w-full" onSubmit={handleSubmit}>
+          <form className="bg-black rounded-xl shadow-lg h-fit flex flex-row px-1 items-center w-full">
             <input
               defaultValue={inputValue}
               onChange={handleInputChange}
               type="text"
               name="prompt"
               placeholder="smile"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  submitRef.current?.click();
-                }
-              }}
               className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
             />
             <SubmitButton ref={submitRef} />
@@ -56,7 +52,11 @@ export const PageContent = ({ children, prompt }: PageContentProps) => {
           <h2 className="border-b scroll-m-20 text-xl font-semibold tracking-tight">
             Installation & Usage:
           </h2>
-          <CodeSnippet />
+          	
+          <SyntaxHighlighter language="typescript" style={atomOneDark}>
+            {markdown}
+          </SyntaxHighlighter>
+          {/* <CodeSnippet /> */}
         <EmojiGrid prompt={inputValue} />
       </Suspense>
 

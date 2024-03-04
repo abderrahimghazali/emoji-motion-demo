@@ -29,15 +29,14 @@ const [visibleEmojis, setVisibleEmojis] = useState<Emoji[]>([]);
   const [loadIndex, setLoadIndex] = useState(1);
 
   useEffect(() => {
-    // Filter emojis based on the prompt
     const filtered = prompt
       ? emojis.filter(emoji =>
           emoji.description?.toLowerCase().includes(prompt.toLowerCase())
         )
       : emojis;
     setFilteredEmojis(filtered);
-    setVisibleEmojis(filtered.slice(0, INITIAL_LOAD)); // Reset visible emojis based on new filter
-    setLoadIndex(1); // Reset load index
+    setVisibleEmojis(filtered.slice(0, INITIAL_LOAD));
+    setLoadIndex(1);
   }, [prompt]);
 
   const handleScroll = () => {
@@ -66,7 +65,7 @@ const [visibleEmojis, setVisibleEmojis] = useState<Emoji[]>([]);
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-items-stretch w-full group-hover:opacity-100">
           {visibleEmojis.map((emoji, index) => (
-            <Dialog >
+            <Dialog key={index}>
               <DialogTrigger><EmojiMotion emoji={emoji.value} variant="hover"/></DialogTrigger>
               <DialogContent className=''>
                 <DialogHeader>
