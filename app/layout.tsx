@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   openGraph: {
     images: '/preview.png',
   },
+  twitter: {
+    card:'summary_large_image',
+    title: siteConfig.name,
+    images: '/preview.png',
+    description: siteConfig.description,
+  },
   icons: [
     {
       url: "/logo.svg",

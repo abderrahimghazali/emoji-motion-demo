@@ -19,12 +19,18 @@ export const PageContent = ({ children, prompt }: PageContentProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  const  markdown = `
-import EmojiMotion from "emoji-motion";
-
-<EmojiMotion emoji={😀} style={{ height: 250, width: 250 }}/>
+  const  installMarkdown = `npm install emoji-motion
+# or
+yarn add emoji-motion
 `;
+  const  markdown = `import React from 'react';
+import EmojiMotion from 'emoji-motion';
+  
+function App() {
+  return <EmojiMotion emoji="😀" style={{ height: 250, width: 250 }} />;
+}
+`;
+  const  example_markdown = `<EmojiMotion emoji="😀" variant="hover" style={{ height: 250, width: 250 }} />`;
 
   return (
     <>
@@ -51,14 +57,32 @@ import EmojiMotion from "emoji-motion";
         </div>
       </div>
       <Suspense>
-          <h2 className="border-b scroll-m-20 text-xl font-semibold tracking-tight">
+          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Installation & Usage:
-          </h2>
-          	
+          </h3>
+          <SyntaxHighlighter language="bash" style={atomOneDark}>
+            {installMarkdown}
+          </SyntaxHighlighter>
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Basic example: 
+          </h4>
           <SyntaxHighlighter language="typescript" style={atomOneDark}>
             {markdown}
           </SyntaxHighlighter>
-          {/* <CodeSnippet /> */}
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+              Using the variant Attribute: 
+            </h4>
+            <p className="leading-7">
+            The variant attribute allows you to specify the type of animation for the emoji. The two supported variants are loop and hover:
+            </p>
+            <ul className="my-6 ml-6 list-disc">
+              <li><b>loop</b>: The emoji animation loops continuously.</li>
+              <li><b>hover</b>: The animation plays when the user hovers over the emoji.</li>
+            </ul>
+            Example usage:
+            <SyntaxHighlighter language="typescript" style={atomOneDark}>
+              {example_markdown}
+            </SyntaxHighlighter>
         <EmojiGrid prompt={inputValue} />
       </Suspense>
 

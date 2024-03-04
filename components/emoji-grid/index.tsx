@@ -72,7 +72,7 @@ const [visibleEmojis, setVisibleEmojis] = useState<Emoji[]>([]);
                 <DialogHeader>
                   <DialogDescription>
                     <EmojiMotion emoji={emoji.value} />
-                    <Button>Copy code</Button>
+                    <Button onClick={() => navigator.clipboard.writeText(`<EmojiMotion emoji={${emoji.value}} variant="hover"/>`)}>Copy to clipboard</Button>
                   </DialogDescription>
                 </DialogHeader>
               </DialogContent>
